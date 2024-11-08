@@ -11,7 +11,7 @@ def get_max_deadline(jobs):
     return max_deadline
 
 def schedule_jobs(jobs, scheduled_jobs):
-    jobs.sort(key=lambda x: x.profit, reverse=True)
+    jobs.sort(key=lambda x: x.profit, reverse=False)
     for job in jobs:
         for j in range(job.deadline - 1, -1, -1):
             if scheduled_jobs[j] is None:
