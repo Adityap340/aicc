@@ -1,0 +1,33 @@
+public class BubbleSortHelper {
+    public static List<Integer> bubbleSort(List<Integer> numbers) {
+        /*
+        O_n^2
+        Sorts the given list in ascending order using the bubble sort algorithm.
+        
+        Parameters:
+        numbers (List<Integer>): The list to be sorted.
+        
+        Returns:
+        List<Integer>: The sorted list.
+        */
+        
+        for (Integer i = 0; i < numbers.size(); i++) {
+            // Last i elements are already in place
+            for (Integer j = 0; j < numbers.size() - i - 1; j++) {
+                // Traverse the list from 0 to numbers.size() - i - 1
+                // Swap if the element found is greater than the next element
+                if (numbers[j] > numbers[j+1]) {
+                    Integer temp = numbers[j];
+                    numbers[j] = numbers[j+1];
+                    numbers[j+1] = temp;
+                }
+            }
+        }
+        
+        return numbers;
+    }
+}
+
+// List<Integer> unsortedNumbers = new List<Integer>{5, 2, 8, 1, 9};
+// List<Integer> sortedNumbers = BubbleSortHelper.bubbleSort(unsortedNumbers);
+// System.debug('Sorted list: ' + sortedNumbers);

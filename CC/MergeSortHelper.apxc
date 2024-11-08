@@ -1,0 +1,69 @@
+public class MergeSortHelper {
+    /*
+    * Sorts a list of integers using the Merge Sort algorithm
+    * The method is made public and static to be accessible from anywhere
+    */
+    public static List<Integer> sortList(List<Integer> inputList) {
+        // If list is empty or has one element, return it as is
+        if (inputList.size() <= 1) {
+            return inputList;
+        }
+        
+        // Find the middle point to divide the list into two halves
+        Integer mid = inputList.size() / 2;
+        
+        // Create two temporary lists for left and right halves
+        List<Integer> leftHalf = new List<Integer>();
+        List<Integer> rightHalf = new List<Integer>();
+        
+        // Fill the left and right halves
+        for (Integer i = 0; i < mid; i++) {
+            leftHalf.add(inputList[i]);
+        }
+        for (Integer i = mid; i < inputList.size(); i++) {
+            rightHalf.add(inputList[i]);
+        }
+        
+        // Recursively sort both halves
+        leftHalf = sortList(leftHalf);
+        rightHalf = sortList(rightHalf);
+        
+        // Merge the sorted halves
+        Integer left = 0;
+        Integer right = 0;
+        Integer main = 0;
+        List<Integer> mergedList = new List<Integer>();
+        
+        // Compare elements from both lists and merge them in sorted order
+        while (left < leftHalf.size() && right < rightHalf.size()) {
+            if (leftHalf[left] <= rightHalf[right]) {
+                mergedList.add(leftHalf[left]);
+                left++;
+            } else {
+                mergedList.add(rightHalf[right]);
+                right++;
+            }
+        }
+        
+        // Add remaining elements from left list, if any
+        while (left < leftHalf.size()) {
+            mergedList.add(leftHalf[left]);
+            left++;
+        }
+        
+        // Add remaining elements from right list, if any
+        while (right < rightHalf.size()) {
+            mergedList.add(rightHalf[right]);
+            right++;
+        }
+        
+        return mergedList;
+    }
+}
+
+/*
+List<Integer> numbers = new List<Integer>{64, 34, 25, 12, 22, 11, 90};
+System.debug('Original List: ' + numbers);
+List<Integer> sortedList = MergeSortHelper.sortList(numbers);
+System.debug('Sorted List: ' + sortedList);
+*/
